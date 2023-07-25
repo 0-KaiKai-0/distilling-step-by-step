@@ -24,6 +24,8 @@ from train_utils import train_and_evaluate
 
 
 def run(args):
+    # import pdb
+    # pdb.set_trace()
     #### Prepare datasets
     if args.dataset == 'cqa':
         dataset_loader = CQADatasetLoader()
@@ -213,7 +215,7 @@ if __name__ == '__main__':
     parser.add_argument('--run', type=int, default=0)
     parser.add_argument('--from_pretrained', type=str, default='google/t5-v1_1-base')
     parser.add_argument('--label_type', type=str, default='gt')
-    parser.add_argument('--llm', type=str, default='palm')
+    parser.add_argument('--llm', type=str, default=None)
     parser.add_argument('--max_input_length', type=int, default=1024)
     parser.add_argument('--grad_steps', type=int, default=1)
     parser.add_argument('--local_rank', type=int, default=-1)

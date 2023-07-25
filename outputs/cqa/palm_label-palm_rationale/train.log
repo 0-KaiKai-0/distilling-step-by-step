@@ -1,0 +1,265 @@
+LLM Train Acc: 0.7431
+LLM Test Acc: 0.7723
+dsw-27183-759b57b4d6-kz2vc:164986:165418 [0] NCCL INFO Bootstrap : Using eth0:10.243.152.6<0>
+dsw-27183-759b57b4d6-kz2vc:164986:165418 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+
+dsw-27183-759b57b4d6-kz2vc:164986:165418 [0] misc/ibvwrap.cc:63 NCCL WARN Failed to open libibverbs.so[.1]
+dsw-27183-759b57b4d6-kz2vc:164986:165418 [0] NCCL INFO NET/Socket : Using [0]eth0:10.243.152.6<0>
+dsw-27183-759b57b4d6-kz2vc:164986:165418 [0] NCCL INFO Using network Socket
+NCCL version 2.10.3+cuda11.3
+dsw-27183-759b57b4d6-kz2vc:164986:165438 [6] NCCL INFO NCCL_MAX_NCHANNELS set by environment to 2.
+dsw-27183-759b57b4d6-kz2vc:164986:165433 [1] NCCL INFO NCCL_MIN_NCHANNELS set by environment to 2.
+dsw-27183-759b57b4d6-kz2vc:164986:165433 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0
+dsw-27183-759b57b4d6-kz2vc:164986:165439 [7] NCCL INFO Trees [0] -1/-1/-1->7->6 [1] -1/-1/-1->7->6
+dsw-27183-759b57b4d6-kz2vc:164986:165438 [6] NCCL INFO Trees [0] 7/-1/-1->6->5 [1] 7/-1/-1->6->5
+dsw-27183-759b57b4d6-kz2vc:164986:165432 [0] NCCL INFO Channel 00/02 :    0   1   2   3   4   5   6   7
+dsw-27183-759b57b4d6-kz2vc:164986:165437 [5] NCCL INFO Trees [0] 6/-1/-1->5->4 [1] 6/-1/-1->5->4
+dsw-27183-759b57b4d6-kz2vc:164986:165434 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1
+dsw-27183-759b57b4d6-kz2vc:164986:165435 [3] NCCL INFO Trees [0] 4/-1/-1->3->2 [1] 4/-1/-1->3->2
+dsw-27183-759b57b4d6-kz2vc:164986:165432 [0] NCCL INFO Channel 01/02 :    0   1   2   3   4   5   6   7
+dsw-27183-759b57b4d6-kz2vc:164986:165432 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1
+dsw-27183-759b57b4d6-kz2vc:164986:165436 [4] NCCL INFO Trees [0] 5/-1/-1->4->3 [1] 5/-1/-1->4->3
+dsw-27183-759b57b4d6-kz2vc:164986:165438 [6] NCCL INFO Channel 00 : 6[d0] -> 7[e0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165439 [7] NCCL INFO Channel 00 : 7[e0] -> 0[70] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165432 [0] NCCL INFO Channel 00 : 0[70] -> 1[80] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165433 [1] NCCL INFO Channel 00 : 1[80] -> 2[90] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165438 [6] NCCL INFO Channel 01 : 6[d0] -> 7[e0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165437 [5] NCCL INFO Channel 00 : 5[c0] -> 6[d0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165434 [2] NCCL INFO Channel 00 : 2[90] -> 3[a0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165439 [7] NCCL INFO Channel 01 : 7[e0] -> 0[70] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165436 [4] NCCL INFO Channel 00 : 4[b0] -> 5[c0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165432 [0] NCCL INFO Channel 01 : 0[70] -> 1[80] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165435 [3] NCCL INFO Channel 00 : 3[a0] -> 4[b0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165433 [1] NCCL INFO Channel 01 : 1[80] -> 2[90] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165437 [5] NCCL INFO Channel 01 : 5[c0] -> 6[d0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165434 [2] NCCL INFO Channel 01 : 2[90] -> 3[a0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165436 [4] NCCL INFO Channel 01 : 4[b0] -> 5[c0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165435 [3] NCCL INFO Channel 01 : 3[a0] -> 4[b0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165439 [7] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:164986:165432 [0] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:164986:165438 [6] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:164986:165433 [1] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:164986:165437 [5] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:164986:165439 [7] NCCL INFO Channel 00 : 7[e0] -> 6[d0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165434 [2] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:164986:165435 [3] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:164986:165436 [4] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:164986:165439 [7] NCCL INFO Channel 01 : 7[e0] -> 6[d0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165438 [6] NCCL INFO Channel 00 : 6[d0] -> 5[c0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165433 [1] NCCL INFO Channel 00 : 1[80] -> 0[70] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165437 [5] NCCL INFO Channel 00 : 5[c0] -> 4[b0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165434 [2] NCCL INFO Channel 00 : 2[90] -> 1[80] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165435 [3] NCCL INFO Channel 00 : 3[a0] -> 2[90] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165436 [4] NCCL INFO Channel 00 : 4[b0] -> 3[a0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165438 [6] NCCL INFO Channel 01 : 6[d0] -> 5[c0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165433 [1] NCCL INFO Channel 01 : 1[80] -> 0[70] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165437 [5] NCCL INFO Channel 01 : 5[c0] -> 4[b0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165434 [2] NCCL INFO Channel 01 : 2[90] -> 1[80] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165435 [3] NCCL INFO Channel 01 : 3[a0] -> 2[90] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165436 [4] NCCL INFO Channel 01 : 4[b0] -> 3[a0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:164986:165439 [7] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:164986:165439 [7] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:164986:165439 [7] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:164986:165432 [0] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:164986:165432 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:164986:165432 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:164986:165438 [6] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:164986:165438 [6] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:164986:165438 [6] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:164986:165433 [1] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:164986:165433 [1] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:164986:165433 [1] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:164986:165434 [2] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:164986:165434 [2] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:164986:165434 [2] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:164986:165437 [5] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:164986:165437 [5] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:164986:165437 [5] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:164986:165435 [3] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:164986:165435 [3] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:164986:165435 [3] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:164986:165436 [4] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:164986:165436 [4] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:164986:165436 [4] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:164986:165434 [2] NCCL INFO comm 0x7f8600002fb0 rank 2 nranks 8 cudaDev 2 busId 90 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:164986:165433 [1] NCCL INFO comm 0x7f85f4002fb0 rank 1 nranks 8 cudaDev 1 busId 80 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:164986:165432 [0] NCCL INFO comm 0x7f85fc002fb0 rank 0 nranks 8 cudaDev 0 busId 70 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:164986:165435 [3] NCCL INFO comm 0x7f85ec002fb0 rank 3 nranks 8 cudaDev 3 busId a0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:164986:165436 [4] NCCL INFO comm 0x7f85f0002fb0 rank 4 nranks 8 cudaDev 4 busId b0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:164986:165437 [5] NCCL INFO comm 0x7f85e4002fb0 rank 5 nranks 8 cudaDev 5 busId c0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:164986:165439 [7] NCCL INFO comm 0x7f85dc002fb0 rank 7 nranks 8 cudaDev 7 busId e0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:164986:165438 [6] NCCL INFO comm 0x7f85e8002fb0 rank 6 nranks 8 cudaDev 6 busId d0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:164986:165418 [0] NCCL INFO Launch mode Parallel
+LLM Train Acc: 0.7431
+LLM Test Acc: 0.7723
+dsw-27183-759b57b4d6-kz2vc:165574:166013 [0] NCCL INFO Bootstrap : Using eth0:10.243.152.6<0>
+dsw-27183-759b57b4d6-kz2vc:165574:166013 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+
+dsw-27183-759b57b4d6-kz2vc:165574:166013 [0] misc/ibvwrap.cc:63 NCCL WARN Failed to open libibverbs.so[.1]
+dsw-27183-759b57b4d6-kz2vc:165574:166013 [0] NCCL INFO NET/Socket : Using [0]eth0:10.243.152.6<0>
+dsw-27183-759b57b4d6-kz2vc:165574:166013 [0] NCCL INFO Using network Socket
+NCCL version 2.10.3+cuda11.3
+dsw-27183-759b57b4d6-kz2vc:165574:166027 [5] NCCL INFO NCCL_MAX_NCHANNELS set by environment to 2.
+dsw-27183-759b57b4d6-kz2vc:165574:166027 [5] NCCL INFO NCCL_MIN_NCHANNELS set by environment to 2.
+dsw-27183-759b57b4d6-kz2vc:165574:166027 [5] NCCL INFO Trees [0] 6/-1/-1->5->4 [1] 6/-1/-1->5->4
+dsw-27183-759b57b4d6-kz2vc:165574:166028 [6] NCCL INFO Trees [0] 7/-1/-1->6->5 [1] 7/-1/-1->6->5
+dsw-27183-759b57b4d6-kz2vc:165574:166029 [7] NCCL INFO Trees [0] -1/-1/-1->7->6 [1] -1/-1/-1->7->6
+dsw-27183-759b57b4d6-kz2vc:165574:166022 [0] NCCL INFO Channel 00/02 :    0   1   2   3   4   5   6   7
+dsw-27183-759b57b4d6-kz2vc:165574:166022 [0] NCCL INFO Channel 01/02 :    0   1   2   3   4   5   6   7
+dsw-27183-759b57b4d6-kz2vc:165574:166022 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1
+dsw-27183-759b57b4d6-kz2vc:165574:166023 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0
+dsw-27183-759b57b4d6-kz2vc:165574:166024 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1
+dsw-27183-759b57b4d6-kz2vc:165574:166025 [3] NCCL INFO Trees [0] 4/-1/-1->3->2 [1] 4/-1/-1->3->2
+dsw-27183-759b57b4d6-kz2vc:165574:166026 [4] NCCL INFO Trees [0] 5/-1/-1->4->3 [1] 5/-1/-1->4->3
+dsw-27183-759b57b4d6-kz2vc:165574:166029 [7] NCCL INFO Channel 00 : 7[e0] -> 0[70] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166028 [6] NCCL INFO Channel 00 : 6[d0] -> 7[e0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166027 [5] NCCL INFO Channel 00 : 5[c0] -> 6[d0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166026 [4] NCCL INFO Channel 00 : 4[b0] -> 5[c0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166025 [3] NCCL INFO Channel 00 : 3[a0] -> 4[b0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166023 [1] NCCL INFO Channel 00 : 1[80] -> 2[90] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166024 [2] NCCL INFO Channel 00 : 2[90] -> 3[a0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166029 [7] NCCL INFO Channel 01 : 7[e0] -> 0[70] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166028 [6] NCCL INFO Channel 01 : 6[d0] -> 7[e0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166022 [0] NCCL INFO Channel 00 : 0[70] -> 1[80] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166027 [5] NCCL INFO Channel 01 : 5[c0] -> 6[d0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166026 [4] NCCL INFO Channel 01 : 4[b0] -> 5[c0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166025 [3] NCCL INFO Channel 01 : 3[a0] -> 4[b0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166023 [1] NCCL INFO Channel 01 : 1[80] -> 2[90] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166024 [2] NCCL INFO Channel 01 : 2[90] -> 3[a0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166022 [0] NCCL INFO Channel 01 : 0[70] -> 1[80] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166028 [6] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:165574:166027 [5] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:165574:166026 [4] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:165574:166024 [2] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:165574:166025 [3] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:165574:166023 [1] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:165574:166022 [0] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:165574:166029 [7] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:165574:166029 [7] NCCL INFO Channel 00 : 7[e0] -> 6[d0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166029 [7] NCCL INFO Channel 01 : 7[e0] -> 6[d0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166028 [6] NCCL INFO Channel 00 : 6[d0] -> 5[c0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166027 [5] NCCL INFO Channel 00 : 5[c0] -> 4[b0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166026 [4] NCCL INFO Channel 00 : 4[b0] -> 3[a0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166024 [2] NCCL INFO Channel 00 : 2[90] -> 1[80] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166025 [3] NCCL INFO Channel 00 : 3[a0] -> 2[90] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166023 [1] NCCL INFO Channel 00 : 1[80] -> 0[70] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166028 [6] NCCL INFO Channel 01 : 6[d0] -> 5[c0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166027 [5] NCCL INFO Channel 01 : 5[c0] -> 4[b0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166026 [4] NCCL INFO Channel 01 : 4[b0] -> 3[a0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166024 [2] NCCL INFO Channel 01 : 2[90] -> 1[80] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166025 [3] NCCL INFO Channel 01 : 3[a0] -> 2[90] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166023 [1] NCCL INFO Channel 01 : 1[80] -> 0[70] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:165574:166029 [7] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:165574:166029 [7] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:165574:166029 [7] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:165574:166022 [0] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:165574:166022 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:165574:166022 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:165574:166028 [6] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:165574:166028 [6] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:165574:166028 [6] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:165574:166027 [5] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:165574:166027 [5] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:165574:166027 [5] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:165574:166026 [4] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:165574:166026 [4] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:165574:166026 [4] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:165574:166025 [3] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:165574:166025 [3] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:165574:166025 [3] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:165574:166024 [2] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:165574:166024 [2] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:165574:166024 [2] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:165574:166023 [1] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:165574:166023 [1] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:165574:166023 [1] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:165574:166026 [4] NCCL INFO comm 0x7f5ea4002fb0 rank 4 nranks 8 cudaDev 4 busId b0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:165574:166022 [0] NCCL INFO comm 0x7f5eb4002fb0 rank 0 nranks 8 cudaDev 0 busId 70 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:165574:166029 [7] NCCL INFO comm 0x7f5e90002fb0 rank 7 nranks 8 cudaDev 7 busId e0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:165574:166027 [5] NCCL INFO comm 0x7f5e98002fb0 rank 5 nranks 8 cudaDev 5 busId c0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:165574:166024 [2] NCCL INFO comm 0x7f5eac002fb0 rank 2 nranks 8 cudaDev 2 busId 90 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:165574:166028 [6] NCCL INFO comm 0x7f5e9c002fb0 rank 6 nranks 8 cudaDev 6 busId d0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:165574:166023 [1] NCCL INFO comm 0x7f5ea8002fb0 rank 1 nranks 8 cudaDev 1 busId 80 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:165574:166025 [3] NCCL INFO comm 0x7f5ea0002fb0 rank 3 nranks 8 cudaDev 3 busId a0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:165574:166013 [0] NCCL INFO Launch mode Parallel
+{'loss': 9.283, 'learning_rate': 4.875e-05, 'epoch': 14.7}
+{'eval_test_loss': 2.952451467514038, 'eval_test_accuracy': 0.005733005733005733, 'eval_test_runtime': 18.9809, 'eval_test_samples_per_second': 64.328, 'eval_test_steps_per_second': 0.527, 'epoch': 14.7}
+{'loss': 2.0339, 'learning_rate': 4.75e-05, 'epoch': 29.41}
+{'eval_test_loss': 0.5885292291641235, 'eval_test_accuracy': 0.4987714987714988, 'eval_test_runtime': 11.4025, 'eval_test_samples_per_second': 107.081, 'eval_test_steps_per_second': 0.877, 'epoch': 29.41}
+{'loss': 0.6028, 'learning_rate': 4.6250000000000006e-05, 'epoch': 44.12}
+{'eval_test_loss': 0.5709779262542725, 'eval_test_accuracy': 0.597051597051597, 'eval_test_runtime': 11.5553, 'eval_test_samples_per_second': 105.666, 'eval_test_steps_per_second': 0.865, 'epoch': 44.12}
+{'loss': 0.434, 'learning_rate': 4.5e-05, 'epoch': 58.81}
+{'eval_test_loss': 0.6311569213867188, 'eval_test_accuracy': 0.6052416052416052, 'eval_test_runtime': 11.5686, 'eval_test_samples_per_second': 105.544, 'eval_test_steps_per_second': 0.864, 'epoch': 58.81}
+{'loss': 0.3414, 'learning_rate': 4.375e-05, 'epoch': 73.52}
+{'eval_test_loss': 0.7089366912841797, 'eval_test_accuracy': 0.5937755937755937, 'eval_test_runtime': 11.5194, 'eval_test_samples_per_second': 105.995, 'eval_test_steps_per_second': 0.868, 'epoch': 73.52}
+{'loss': 0.2814, 'learning_rate': 4.25e-05, 'epoch': 88.23}
+{'eval_test_loss': 0.7887166142463684, 'eval_test_accuracy': 0.5921375921375921, 'eval_test_runtime': 11.5088, 'eval_test_samples_per_second': 106.093, 'eval_test_steps_per_second': 0.869, 'epoch': 88.23}
+{'loss': 0.2384, 'learning_rate': 4.125e-05, 'epoch': 102.93}
+{'eval_test_loss': 0.8439500331878662, 'eval_test_accuracy': 0.6011466011466011, 'eval_test_runtime': 11.4939, 'eval_test_samples_per_second': 106.231, 'eval_test_steps_per_second': 0.87, 'epoch': 102.93}
+{'loss': 0.208, 'learning_rate': 4e-05, 'epoch': 117.64}
+{'eval_test_loss': 0.9399682283401489, 'eval_test_accuracy': 0.5896805896805897, 'eval_test_runtime': 11.4826, 'eval_test_samples_per_second': 106.335, 'eval_test_steps_per_second': 0.871, 'epoch': 117.64}
+{'loss': 0.1841, 'learning_rate': 3.875e-05, 'epoch': 132.35}
+{'eval_test_loss': 0.990381121635437, 'eval_test_accuracy': 0.5937755937755937, 'eval_test_runtime': 11.4953, 'eval_test_samples_per_second': 106.218, 'eval_test_steps_per_second': 0.87, 'epoch': 132.35}
+{'loss': 0.1667, 'learning_rate': 3.7500000000000003e-05, 'epoch': 147.06}
+{'eval_test_loss': 1.032160997390747, 'eval_test_accuracy': 0.6027846027846028, 'eval_test_runtime': 11.4897, 'eval_test_samples_per_second': 106.269, 'eval_test_steps_per_second': 0.87, 'epoch': 147.06}
+{'loss': 0.1519, 'learning_rate': 3.625e-05, 'epoch': 161.75}
+{'eval_test_loss': 1.0781277418136597, 'eval_test_accuracy': 0.5888615888615889, 'eval_test_runtime': 11.4833, 'eval_test_samples_per_second': 106.328, 'eval_test_steps_per_second': 0.871, 'epoch': 161.75}
+{'loss': 0.1403, 'learning_rate': 3.5e-05, 'epoch': 176.46}
+{'eval_test_loss': 1.1113955974578857, 'eval_test_accuracy': 0.5921375921375921, 'eval_test_runtime': 11.5577, 'eval_test_samples_per_second': 105.644, 'eval_test_steps_per_second': 0.865, 'epoch': 176.46}
+{'loss': 0.1294, 'learning_rate': 3.375000000000001e-05, 'epoch': 191.17}
+{'eval_test_loss': 1.2016016244888306, 'eval_test_accuracy': 0.5888615888615889, 'eval_test_runtime': 11.5406, 'eval_test_samples_per_second': 105.8, 'eval_test_steps_per_second': 0.867, 'epoch': 191.17}
+{'loss': 0.1206, 'learning_rate': 3.2500000000000004e-05, 'epoch': 205.87}
+{'eval_test_loss': 1.2253379821777344, 'eval_test_accuracy': 0.588042588042588, 'eval_test_runtime': 11.583, 'eval_test_samples_per_second': 105.413, 'eval_test_steps_per_second': 0.863, 'epoch': 205.87}
+{'loss': 0.1132, 'learning_rate': 3.125e-05, 'epoch': 220.58}
+{'eval_test_loss': 1.2649595737457275, 'eval_test_accuracy': 0.5913185913185913, 'eval_test_runtime': 11.5091, 'eval_test_samples_per_second': 106.09, 'eval_test_steps_per_second': 0.869, 'epoch': 220.58}
+{'loss': 0.1067, 'learning_rate': 3e-05, 'epoch': 235.29}
+{'eval_test_loss': 1.2846299409866333, 'eval_test_accuracy': 0.6011466011466011, 'eval_test_runtime': 11.6569, 'eval_test_samples_per_second': 104.745, 'eval_test_steps_per_second': 0.858, 'epoch': 235.29}
+{'loss': 0.1007, 'learning_rate': 2.8749999999999997e-05, 'epoch': 249.99}
+{'eval_test_loss': 1.3123672008514404, 'eval_test_accuracy': 0.5954135954135954, 'eval_test_runtime': 11.5513, 'eval_test_samples_per_second': 105.702, 'eval_test_steps_per_second': 0.866, 'epoch': 249.99}
+{'loss': 0.0949, 'learning_rate': 2.7500000000000004e-05, 'epoch': 264.7}
+{'eval_test_loss': 1.3714194297790527, 'eval_test_accuracy': 0.5913185913185913, 'eval_test_runtime': 11.5587, 'eval_test_samples_per_second': 105.635, 'eval_test_steps_per_second': 0.865, 'epoch': 264.7}
+{'loss': 0.09, 'learning_rate': 2.625e-05, 'epoch': 279.41}
+{'eval_test_loss': 1.3915737867355347, 'eval_test_accuracy': 0.6027846027846028, 'eval_test_runtime': 11.5707, 'eval_test_samples_per_second': 105.525, 'eval_test_steps_per_second': 0.864, 'epoch': 279.41}
+{'loss': 0.0862, 'learning_rate': 2.5e-05, 'epoch': 294.12}
+{'eval_test_loss': 1.3761974573135376, 'eval_test_accuracy': 0.601965601965602, 'eval_test_runtime': 11.4898, 'eval_test_samples_per_second': 106.268, 'eval_test_steps_per_second': 0.87, 'epoch': 294.12}
+{'loss': 0.0821, 'learning_rate': 2.375e-05, 'epoch': 308.81}
+{'eval_test_loss': 1.3790438175201416, 'eval_test_accuracy': 0.5986895986895987, 'eval_test_runtime': 11.5289, 'eval_test_samples_per_second': 105.908, 'eval_test_steps_per_second': 0.867, 'epoch': 308.81}
+{'loss': 0.0789, 'learning_rate': 2.25e-05, 'epoch': 323.52}
+{'eval_test_loss': 1.401630163192749, 'eval_test_accuracy': 0.6068796068796068, 'eval_test_runtime': 11.5106, 'eval_test_samples_per_second': 106.076, 'eval_test_steps_per_second': 0.869, 'epoch': 323.52}
+{'loss': 0.0748, 'learning_rate': 2.125e-05, 'epoch': 338.23}
+{'eval_test_loss': 1.4601935148239136, 'eval_test_accuracy': 0.6076986076986077, 'eval_test_runtime': 11.5342, 'eval_test_samples_per_second': 105.859, 'eval_test_steps_per_second': 0.867, 'epoch': 338.23}
+{'loss': 0.072, 'learning_rate': 2e-05, 'epoch': 352.93}
+{'eval_test_loss': 1.5136874914169312, 'eval_test_accuracy': 0.588042588042588, 'eval_test_runtime': 11.5411, 'eval_test_samples_per_second': 105.796, 'eval_test_steps_per_second': 0.866, 'epoch': 352.93}
+{'loss': 0.0694, 'learning_rate': 1.8750000000000002e-05, 'epoch': 367.64}
+{'eval_test_loss': 1.492692470550537, 'eval_test_accuracy': 0.5913185913185913, 'eval_test_runtime': 11.4977, 'eval_test_samples_per_second': 106.195, 'eval_test_steps_per_second': 0.87, 'epoch': 367.64}
+{'loss': 0.067, 'learning_rate': 1.75e-05, 'epoch': 382.35}
+{'eval_test_loss': 1.509842872619629, 'eval_test_accuracy': 0.5937755937755937, 'eval_test_runtime': 11.4693, 'eval_test_samples_per_second': 106.458, 'eval_test_steps_per_second': 0.872, 'epoch': 382.35}
+{'loss': 0.0648, 'learning_rate': 1.6250000000000002e-05, 'epoch': 397.06}
+{'eval_test_loss': 1.5142501592636108, 'eval_test_accuracy': 0.588042588042588, 'eval_test_runtime': 11.6797, 'eval_test_samples_per_second': 104.54, 'eval_test_steps_per_second': 0.856, 'epoch': 397.06}
+{'loss': 0.0628, 'learning_rate': 1.5e-05, 'epoch': 411.75}
+{'eval_test_loss': 1.5293606519699097, 'eval_test_accuracy': 0.5954135954135954, 'eval_test_runtime': 11.5455, 'eval_test_samples_per_second': 105.755, 'eval_test_steps_per_second': 0.866, 'epoch': 411.75}
+{'loss': 0.061, 'learning_rate': 1.3750000000000002e-05, 'epoch': 426.46}
+{'eval_test_loss': 1.5155465602874756, 'eval_test_accuracy': 0.5995085995085995, 'eval_test_runtime': 11.497, 'eval_test_samples_per_second': 106.202, 'eval_test_steps_per_second': 0.87, 'epoch': 426.46}
+{'loss': 0.0588, 'learning_rate': 1.25e-05, 'epoch': 441.17}
+{'eval_test_loss': 1.5605465173721313, 'eval_test_accuracy': 0.592956592956593, 'eval_test_runtime': 11.5237, 'eval_test_samples_per_second': 105.955, 'eval_test_steps_per_second': 0.868, 'epoch': 441.17}
+{'loss': 0.0574, 'learning_rate': 1.125e-05, 'epoch': 455.87}
+{'eval_test_loss': 1.5537375211715698, 'eval_test_accuracy': 0.5954135954135954, 'eval_test_runtime': 11.5725, 'eval_test_samples_per_second': 105.509, 'eval_test_steps_per_second': 0.864, 'epoch': 455.87}
+{'loss': 0.0561, 'learning_rate': 1e-05, 'epoch': 470.58}
+{'eval_test_loss': 1.5817091464996338, 'eval_test_accuracy': 0.5945945945945946, 'eval_test_runtime': 11.5198, 'eval_test_samples_per_second': 105.991, 'eval_test_steps_per_second': 0.868, 'epoch': 470.58}
+{'loss': 0.055, 'learning_rate': 8.75e-06, 'epoch': 485.29}
+{'eval_test_loss': 1.6113370656967163, 'eval_test_accuracy': 0.592956592956593, 'eval_test_runtime': 11.5295, 'eval_test_samples_per_second': 105.902, 'eval_test_steps_per_second': 0.867, 'epoch': 485.29}
+{'loss': 0.0541, 'learning_rate': 7.5e-06, 'epoch': 499.99}
+{'eval_test_loss': 1.5748790502548218, 'eval_test_accuracy': 0.5945945945945946, 'eval_test_runtime': 11.4918, 'eval_test_samples_per_second': 106.25, 'eval_test_steps_per_second': 0.87, 'epoch': 499.99}
+{'loss': 0.0534, 'learning_rate': 6.25e-06, 'epoch': 514.7}
+{'eval_test_loss': 1.5982390642166138, 'eval_test_accuracy': 0.5962325962325963, 'eval_test_runtime': 11.5662, 'eval_test_samples_per_second': 105.567, 'eval_test_steps_per_second': 0.865, 'epoch': 514.7}
+{'loss': 0.0526, 'learning_rate': 5e-06, 'epoch': 529.41}
+{'eval_test_loss': 1.6122912168502808, 'eval_test_accuracy': 0.5937755937755937, 'eval_test_runtime': 11.6108, 'eval_test_samples_per_second': 105.161, 'eval_test_steps_per_second': 0.861, 'epoch': 529.41}
+{'loss': 0.0517, 'learning_rate': 3.75e-06, 'epoch': 544.12}
+{'eval_test_loss': 1.6192227602005005, 'eval_test_accuracy': 0.5945945945945946, 'eval_test_runtime': 11.5949, 'eval_test_samples_per_second': 105.305, 'eval_test_steps_per_second': 0.862, 'epoch': 544.12}
+{'loss': 0.0513, 'learning_rate': 2.5e-06, 'epoch': 558.81}
+{'eval_test_loss': 1.6116756200790405, 'eval_test_accuracy': 0.5937755937755937, 'eval_test_runtime': 11.5064, 'eval_test_samples_per_second': 106.115, 'eval_test_steps_per_second': 0.869, 'epoch': 558.81}
+{'loss': 0.051, 'learning_rate': 1.25e-06, 'epoch': 573.52}
+{'eval_test_loss': 1.6103359460830688, 'eval_test_accuracy': 0.5945945945945946, 'eval_test_runtime': 11.5094, 'eval_test_samples_per_second': 106.087, 'eval_test_steps_per_second': 0.869, 'epoch': 573.52}
+{'loss': 0.051, 'learning_rate': 0.0, 'epoch': 588.23}
+{'eval_test_loss': 1.616695523262024, 'eval_test_accuracy': 0.5945945945945946, 'eval_test_runtime': 11.5809, 'eval_test_samples_per_second': 105.433, 'eval_test_steps_per_second': 0.863, 'epoch': 588.23}
+{'train_runtime': 104544.5082, 'train_samples_per_second': 48.974, 'train_steps_per_second': 0.096, 'train_loss': 0.4033180709838867, 'epoch': 588.23}

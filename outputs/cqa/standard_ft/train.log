@@ -1,0 +1,171 @@
+dsw-27183-759b57b4d6-kz2vc:207523:207935 [0] NCCL INFO Bootstrap : Using eth0:10.243.152.6<0>
+dsw-27183-759b57b4d6-kz2vc:207523:207935 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+
+dsw-27183-759b57b4d6-kz2vc:207523:207935 [0] misc/ibvwrap.cc:63 NCCL WARN Failed to open libibverbs.so[.1]
+dsw-27183-759b57b4d6-kz2vc:207523:207935 [0] NCCL INFO NET/Socket : Using [0]eth0:10.243.152.6<0>
+dsw-27183-759b57b4d6-kz2vc:207523:207935 [0] NCCL INFO Using network Socket
+NCCL version 2.10.3+cuda11.3
+dsw-27183-759b57b4d6-kz2vc:207523:207956 [2] NCCL INFO NCCL_MAX_NCHANNELS set by environment to 2.
+dsw-27183-759b57b4d6-kz2vc:207523:207956 [2] NCCL INFO NCCL_MIN_NCHANNELS set by environment to 2.
+dsw-27183-759b57b4d6-kz2vc:207523:207956 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1
+dsw-27183-759b57b4d6-kz2vc:207523:207957 [3] NCCL INFO Trees [0] 4/-1/-1->3->2 [1] 4/-1/-1->3->2
+dsw-27183-759b57b4d6-kz2vc:207523:207958 [4] NCCL INFO Trees [0] 5/-1/-1->4->3 [1] 5/-1/-1->4->3
+dsw-27183-759b57b4d6-kz2vc:207523:207960 [6] NCCL INFO Trees [0] 7/-1/-1->6->5 [1] 7/-1/-1->6->5
+dsw-27183-759b57b4d6-kz2vc:207523:207955 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0
+dsw-27183-759b57b4d6-kz2vc:207523:207961 [7] NCCL INFO Trees [0] -1/-1/-1->7->6 [1] -1/-1/-1->7->6
+dsw-27183-759b57b4d6-kz2vc:207523:207954 [0] NCCL INFO Channel 00/02 :    0   1   2   3   4   5   6   7
+dsw-27183-759b57b4d6-kz2vc:207523:207959 [5] NCCL INFO Trees [0] 6/-1/-1->5->4 [1] 6/-1/-1->5->4
+dsw-27183-759b57b4d6-kz2vc:207523:207954 [0] NCCL INFO Channel 01/02 :    0   1   2   3   4   5   6   7
+dsw-27183-759b57b4d6-kz2vc:207523:207954 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1
+dsw-27183-759b57b4d6-kz2vc:207523:207954 [0] NCCL INFO Channel 00 : 0[70] -> 1[80] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207955 [1] NCCL INFO Channel 00 : 1[80] -> 2[90] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207961 [7] NCCL INFO Channel 00 : 7[e0] -> 0[70] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207960 [6] NCCL INFO Channel 00 : 6[d0] -> 7[e0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207959 [5] NCCL INFO Channel 00 : 5[c0] -> 6[d0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207954 [0] NCCL INFO Channel 01 : 0[70] -> 1[80] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207955 [1] NCCL INFO Channel 01 : 1[80] -> 2[90] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207961 [7] NCCL INFO Channel 01 : 7[e0] -> 0[70] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207960 [6] NCCL INFO Channel 01 : 6[d0] -> 7[e0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207956 [2] NCCL INFO Channel 00 : 2[90] -> 3[a0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207959 [5] NCCL INFO Channel 01 : 5[c0] -> 6[d0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207957 [3] NCCL INFO Channel 00 : 3[a0] -> 4[b0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207958 [4] NCCL INFO Channel 00 : 4[b0] -> 5[c0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207956 [2] NCCL INFO Channel 01 : 2[90] -> 3[a0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207957 [3] NCCL INFO Channel 01 : 3[a0] -> 4[b0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207958 [4] NCCL INFO Channel 01 : 4[b0] -> 5[c0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207954 [0] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:207523:207961 [7] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:207523:207960 [6] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:207523:207961 [7] NCCL INFO Channel 00 : 7[e0] -> 6[d0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207955 [1] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:207523:207956 [2] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:207523:207957 [3] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:207523:207959 [5] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:207523:207958 [4] NCCL INFO Connected all rings
+dsw-27183-759b57b4d6-kz2vc:207523:207961 [7] NCCL INFO Channel 01 : 7[e0] -> 6[d0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207960 [6] NCCL INFO Channel 00 : 6[d0] -> 5[c0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207960 [6] NCCL INFO Channel 01 : 6[d0] -> 5[c0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207955 [1] NCCL INFO Channel 00 : 1[80] -> 0[70] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207956 [2] NCCL INFO Channel 00 : 2[90] -> 1[80] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207957 [3] NCCL INFO Channel 00 : 3[a0] -> 2[90] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207959 [5] NCCL INFO Channel 00 : 5[c0] -> 4[b0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207958 [4] NCCL INFO Channel 00 : 4[b0] -> 3[a0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207955 [1] NCCL INFO Channel 01 : 1[80] -> 0[70] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207956 [2] NCCL INFO Channel 01 : 2[90] -> 1[80] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207957 [3] NCCL INFO Channel 01 : 3[a0] -> 2[90] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207959 [5] NCCL INFO Channel 01 : 5[c0] -> 4[b0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207961 [7] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:207523:207961 [7] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:207523:207961 [7] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:207523:207958 [4] NCCL INFO Channel 01 : 4[b0] -> 3[a0] via direct shared memory
+dsw-27183-759b57b4d6-kz2vc:207523:207954 [0] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:207523:207954 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:207523:207954 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:207523:207955 [1] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:207523:207955 [1] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:207523:207955 [1] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:207523:207956 [2] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:207523:207956 [2] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:207523:207956 [2] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:207523:207960 [6] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:207523:207960 [6] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:207523:207960 [6] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:207523:207959 [5] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:207523:207959 [5] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:207523:207959 [5] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:207523:207957 [3] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:207523:207957 [3] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:207523:207957 [3] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:207523:207958 [4] NCCL INFO Connected all trees
+dsw-27183-759b57b4d6-kz2vc:207523:207958 [4] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+dsw-27183-759b57b4d6-kz2vc:207523:207958 [4] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+dsw-27183-759b57b4d6-kz2vc:207523:207955 [1] NCCL INFO comm 0x7f1de8002fb0 rank 1 nranks 8 cudaDev 1 busId 80 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:207523:207956 [2] NCCL INFO comm 0x7f1ddc002fb0 rank 2 nranks 8 cudaDev 2 busId 90 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:207523:207954 [0] NCCL INFO comm 0x7f1de4002fb0 rank 0 nranks 8 cudaDev 0 busId 70 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:207523:207961 [7] NCCL INFO comm 0x7f1dd0002fb0 rank 7 nranks 8 cudaDev 7 busId e0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:207523:207957 [3] NCCL INFO comm 0x7f1de0002fb0 rank 3 nranks 8 cudaDev 3 busId a0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:207523:207960 [6] NCCL INFO comm 0x7f1dcc002fb0 rank 6 nranks 8 cudaDev 6 busId d0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:207523:207958 [4] NCCL INFO comm 0x7f1dd4002fb0 rank 4 nranks 8 cudaDev 4 busId b0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:207523:207959 [5] NCCL INFO comm 0x7f1dd8002fb0 rank 5 nranks 8 cudaDev 5 busId c0 - Init COMPLETE
+dsw-27183-759b57b4d6-kz2vc:207523:207935 [0] NCCL INFO Launch mode Parallel
+{'loss': 10.9054, 'learning_rate': 4.875e-05, 'epoch': 13.89}
+{'eval_test_loss': 3.1866555213928223, 'eval_test_accuracy': 0.013923013923013924, 'eval_test_runtime': 5.4394, 'eval_test_samples_per_second': 224.473, 'eval_test_steps_per_second': 0.552, 'epoch': 13.89}
+{'loss': 4.182, 'learning_rate': 4.75e-05, 'epoch': 27.78}
+{'eval_test_loss': 1.0074450969696045, 'eval_test_accuracy': 0.19574119574119575, 'eval_test_runtime': 5.589, 'eval_test_samples_per_second': 218.463, 'eval_test_steps_per_second': 0.537, 'epoch': 27.78}
+{'loss': 1.4548, 'learning_rate': 4.6250000000000006e-05, 'epoch': 41.67}
+{'eval_test_loss': 0.5589661598205566, 'eval_test_accuracy': 0.502047502047502, 'eval_test_runtime': 5.6003, 'eval_test_samples_per_second': 218.024, 'eval_test_steps_per_second': 0.536, 'epoch': 41.67}
+{'loss': 0.5894, 'learning_rate': 4.5e-05, 'epoch': 55.56}
+{'eval_test_loss': 0.5408005714416504, 'eval_test_accuracy': 0.5855855855855856, 'eval_test_runtime': 5.4908, 'eval_test_samples_per_second': 222.372, 'eval_test_steps_per_second': 0.546, 'epoch': 55.56}
+{'loss': 0.3733, 'learning_rate': 4.375e-05, 'epoch': 69.44}
+{'eval_test_loss': 0.5908957123756409, 'eval_test_accuracy': 0.6068796068796068, 'eval_test_runtime': 5.5265, 'eval_test_samples_per_second': 220.934, 'eval_test_steps_per_second': 0.543, 'epoch': 69.44}
+{'loss': 0.2588, 'learning_rate': 4.25e-05, 'epoch': 83.33}
+{'eval_test_loss': 0.6559016108512878, 'eval_test_accuracy': 0.6060606060606061, 'eval_test_runtime': 5.5516, 'eval_test_samples_per_second': 219.938, 'eval_test_steps_per_second': 0.54, 'epoch': 83.33}
+{'loss': 0.194, 'learning_rate': 4.125e-05, 'epoch': 97.22}
+{'eval_test_loss': 0.7238499522209167, 'eval_test_accuracy': 0.6052416052416052, 'eval_test_runtime': 5.553, 'eval_test_samples_per_second': 219.88, 'eval_test_steps_per_second': 0.54, 'epoch': 97.22}
+{'loss': 0.148, 'learning_rate': 4e-05, 'epoch': 111.11}
+{'eval_test_loss': 0.7969787120819092, 'eval_test_accuracy': 0.6068796068796068, 'eval_test_runtime': 5.5413, 'eval_test_samples_per_second': 220.347, 'eval_test_steps_per_second': 0.541, 'epoch': 111.11}
+{'loss': 0.1154, 'learning_rate': 3.875e-05, 'epoch': 125.0}
+{'eval_test_loss': 0.8323850035667419, 'eval_test_accuracy': 0.6126126126126126, 'eval_test_runtime': 5.5777, 'eval_test_samples_per_second': 218.908, 'eval_test_steps_per_second': 0.538, 'epoch': 125.0}
+{'loss': 0.091, 'learning_rate': 3.7500000000000003e-05, 'epoch': 138.89}
+{'eval_test_loss': 0.868587851524353, 'eval_test_accuracy': 0.6150696150696151, 'eval_test_runtime': 5.5339, 'eval_test_samples_per_second': 220.639, 'eval_test_steps_per_second': 0.542, 'epoch': 138.89}
+{'loss': 0.0754, 'learning_rate': 3.625e-05, 'epoch': 152.78}
+{'eval_test_loss': 0.9258448481559753, 'eval_test_accuracy': 0.6076986076986077, 'eval_test_runtime': 5.5499, 'eval_test_samples_per_second': 220.003, 'eval_test_steps_per_second': 0.541, 'epoch': 152.78}
+{'loss': 0.0637, 'learning_rate': 3.5e-05, 'epoch': 166.67}
+{'eval_test_loss': 0.9649510979652405, 'eval_test_accuracy': 0.6036036036036037, 'eval_test_runtime': 5.5244, 'eval_test_samples_per_second': 221.019, 'eval_test_steps_per_second': 0.543, 'epoch': 166.67}
+{'loss': 0.0547, 'learning_rate': 3.375000000000001e-05, 'epoch': 180.56}
+{'eval_test_loss': 1.0161027908325195, 'eval_test_accuracy': 0.6068796068796068, 'eval_test_runtime': 5.5365, 'eval_test_samples_per_second': 220.535, 'eval_test_steps_per_second': 0.542, 'epoch': 180.56}
+{'loss': 0.0473, 'learning_rate': 3.2500000000000004e-05, 'epoch': 194.44}
+{'eval_test_loss': 1.0391582250595093, 'eval_test_accuracy': 0.6076986076986077, 'eval_test_runtime': 5.5413, 'eval_test_samples_per_second': 220.345, 'eval_test_steps_per_second': 0.541, 'epoch': 194.44}
+{'loss': 0.0426, 'learning_rate': 3.125e-05, 'epoch': 208.33}
+{'eval_test_loss': 1.0515930652618408, 'eval_test_accuracy': 0.6109746109746109, 'eval_test_runtime': 5.522, 'eval_test_samples_per_second': 221.114, 'eval_test_steps_per_second': 0.543, 'epoch': 208.33}
+{'loss': 0.0374, 'learning_rate': 3e-05, 'epoch': 222.22}
+{'eval_test_loss': 1.0768567323684692, 'eval_test_accuracy': 0.6109746109746109, 'eval_test_runtime': 5.5271, 'eval_test_samples_per_second': 220.91, 'eval_test_steps_per_second': 0.543, 'epoch': 222.22}
+{'loss': 0.0342, 'learning_rate': 2.8749999999999997e-05, 'epoch': 236.11}
+{'eval_test_loss': 1.1017529964447021, 'eval_test_accuracy': 0.6060606060606061, 'eval_test_runtime': 5.5087, 'eval_test_samples_per_second': 221.649, 'eval_test_steps_per_second': 0.545, 'epoch': 236.11}
+{'loss': 0.0303, 'learning_rate': 2.7500000000000004e-05, 'epoch': 250.0}
+{'eval_test_loss': 1.1427220106124878, 'eval_test_accuracy': 0.6044226044226044, 'eval_test_runtime': 5.6062, 'eval_test_samples_per_second': 217.794, 'eval_test_steps_per_second': 0.535, 'epoch': 250.0}
+{'loss': 0.0283, 'learning_rate': 2.625e-05, 'epoch': 263.89}
+{'eval_test_loss': 1.171651840209961, 'eval_test_accuracy': 0.5995085995085995, 'eval_test_runtime': 5.4606, 'eval_test_samples_per_second': 223.603, 'eval_test_steps_per_second': 0.549, 'epoch': 263.89}
+{'loss': 0.0251, 'learning_rate': 2.5e-05, 'epoch': 277.78}
+{'eval_test_loss': 1.1798053979873657, 'eval_test_accuracy': 0.6060606060606061, 'eval_test_runtime': 5.513, 'eval_test_samples_per_second': 221.477, 'eval_test_steps_per_second': 0.544, 'epoch': 277.78}
+{'loss': 0.0228, 'learning_rate': 2.375e-05, 'epoch': 291.67}
+{'eval_test_loss': 1.193251371383667, 'eval_test_accuracy': 0.5986895986895987, 'eval_test_runtime': 5.5795, 'eval_test_samples_per_second': 218.836, 'eval_test_steps_per_second': 0.538, 'epoch': 291.67}
+{'loss': 0.022, 'learning_rate': 2.25e-05, 'epoch': 305.56}
+{'eval_test_loss': 1.201714038848877, 'eval_test_accuracy': 0.6085176085176085, 'eval_test_runtime': 5.5181, 'eval_test_samples_per_second': 221.271, 'eval_test_steps_per_second': 0.544, 'epoch': 305.56}
+{'loss': 0.0204, 'learning_rate': 2.125e-05, 'epoch': 319.44}
+{'eval_test_loss': 1.2410101890563965, 'eval_test_accuracy': 0.6036036036036037, 'eval_test_runtime': 5.5441, 'eval_test_samples_per_second': 220.235, 'eval_test_steps_per_second': 0.541, 'epoch': 319.44}
+{'loss': 0.0192, 'learning_rate': 2e-05, 'epoch': 333.33}
+{'eval_test_loss': 1.2276692390441895, 'eval_test_accuracy': 0.6036036036036037, 'eval_test_runtime': 5.5047, 'eval_test_samples_per_second': 221.812, 'eval_test_steps_per_second': 0.545, 'epoch': 333.33}
+{'loss': 0.0173, 'learning_rate': 1.8750000000000002e-05, 'epoch': 347.22}
+{'eval_test_loss': 1.269844651222229, 'eval_test_accuracy': 0.6036036036036037, 'eval_test_runtime': 5.5304, 'eval_test_samples_per_second': 220.779, 'eval_test_steps_per_second': 0.542, 'epoch': 347.22}
+{'loss': 0.0166, 'learning_rate': 1.75e-05, 'epoch': 361.11}
+{'eval_test_loss': 1.270133137702942, 'eval_test_accuracy': 0.6076986076986077, 'eval_test_runtime': 5.506, 'eval_test_samples_per_second': 221.758, 'eval_test_steps_per_second': 0.545, 'epoch': 361.11}
+{'loss': 0.0153, 'learning_rate': 1.6250000000000002e-05, 'epoch': 375.0}
+{'eval_test_loss': 1.284079909324646, 'eval_test_accuracy': 0.6117936117936118, 'eval_test_runtime': 5.515, 'eval_test_samples_per_second': 221.394, 'eval_test_steps_per_second': 0.544, 'epoch': 375.0}
+{'loss': 0.0151, 'learning_rate': 1.5e-05, 'epoch': 388.89}
+{'eval_test_loss': 1.3027634620666504, 'eval_test_accuracy': 0.6027846027846028, 'eval_test_runtime': 5.5535, 'eval_test_samples_per_second': 219.862, 'eval_test_steps_per_second': 0.54, 'epoch': 388.89}
+{'loss': 0.0145, 'learning_rate': 1.3750000000000002e-05, 'epoch': 402.78}
+{'eval_test_loss': 1.3098500967025757, 'eval_test_accuracy': 0.601965601965602, 'eval_test_runtime': 5.5197, 'eval_test_samples_per_second': 221.209, 'eval_test_steps_per_second': 0.544, 'epoch': 402.78}
+{'loss': 0.0135, 'learning_rate': 1.25e-05, 'epoch': 416.67}
+{'eval_test_loss': 1.345412254333496, 'eval_test_accuracy': 0.6052416052416052, 'eval_test_runtime': 5.5402, 'eval_test_samples_per_second': 220.39, 'eval_test_steps_per_second': 0.541, 'epoch': 416.67}
+{'loss': 0.0132, 'learning_rate': 1.125e-05, 'epoch': 430.56}
+{'eval_test_loss': 1.3479365110397339, 'eval_test_accuracy': 0.6044226044226044, 'eval_test_runtime': 5.4923, 'eval_test_samples_per_second': 222.31, 'eval_test_steps_per_second': 0.546, 'epoch': 430.56}
+{'loss': 0.0123, 'learning_rate': 1e-05, 'epoch': 444.44}
+{'eval_test_loss': 1.3486356735229492, 'eval_test_accuracy': 0.6101556101556102, 'eval_test_runtime': 5.5706, 'eval_test_samples_per_second': 219.187, 'eval_test_steps_per_second': 0.539, 'epoch': 444.44}
+{'loss': 0.0122, 'learning_rate': 8.75e-06, 'epoch': 458.33}
+{'eval_test_loss': 1.3488203287124634, 'eval_test_accuracy': 0.6076986076986077, 'eval_test_runtime': 5.4981, 'eval_test_samples_per_second': 222.077, 'eval_test_steps_per_second': 0.546, 'epoch': 458.33}
+{'loss': 0.0117, 'learning_rate': 7.5e-06, 'epoch': 472.22}
+{'eval_test_loss': 1.3583101034164429, 'eval_test_accuracy': 0.6085176085176085, 'eval_test_runtime': 5.5161, 'eval_test_samples_per_second': 221.351, 'eval_test_steps_per_second': 0.544, 'epoch': 472.22}
+{'loss': 0.0112, 'learning_rate': 6.25e-06, 'epoch': 486.11}
+{'eval_test_loss': 1.3742897510528564, 'eval_test_accuracy': 0.6068796068796068, 'eval_test_runtime': 5.4741, 'eval_test_samples_per_second': 223.05, 'eval_test_steps_per_second': 0.548, 'epoch': 486.11}
+{'loss': 0.0104, 'learning_rate': 5e-06, 'epoch': 500.0}
+{'eval_test_loss': 1.3849674463272095, 'eval_test_accuracy': 0.6085176085176085, 'eval_test_runtime': 5.5284, 'eval_test_samples_per_second': 220.858, 'eval_test_steps_per_second': 0.543, 'epoch': 500.0}
+{'loss': 0.0116, 'learning_rate': 3.75e-06, 'epoch': 513.89}
+{'eval_test_loss': 1.3843903541564941, 'eval_test_accuracy': 0.6076986076986077, 'eval_test_runtime': 5.5297, 'eval_test_samples_per_second': 220.809, 'eval_test_steps_per_second': 0.543, 'epoch': 513.89}
+{'loss': 0.0106, 'learning_rate': 2.5e-06, 'epoch': 527.78}
+{'eval_test_loss': 1.3838344812393188, 'eval_test_accuracy': 0.6076986076986077, 'eval_test_runtime': 5.4942, 'eval_test_samples_per_second': 222.234, 'eval_test_steps_per_second': 0.546, 'epoch': 527.78}
+{'loss': 0.0102, 'learning_rate': 1.25e-06, 'epoch': 541.67}
+{'eval_test_loss': 1.3947021961212158, 'eval_test_accuracy': 0.6085176085176085, 'eval_test_runtime': 5.5151, 'eval_test_samples_per_second': 221.394, 'eval_test_steps_per_second': 0.544, 'epoch': 541.67}
+{'loss': 0.0103, 'learning_rate': 0.0, 'epoch': 555.56}
+{'eval_test_loss': 1.393273949623108, 'eval_test_accuracy': 0.6085176085176085, 'eval_test_runtime': 5.5088, 'eval_test_samples_per_second': 221.645, 'eval_test_steps_per_second': 0.545, 'epoch': 555.56}
+{'train_runtime': 16928.6995, 'train_samples_per_second': 302.445, 'train_steps_per_second': 0.591, 'train_loss': 0.4760367977380753, 'epoch': 555.56}
