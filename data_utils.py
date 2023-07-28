@@ -111,6 +111,18 @@ class DatasetLoader(object):
         return rationales, labels
 
 
+    def load_gpt_inputs(self, split, gpt):
+        inputs = list()
+        for idx in getattr(self, f'{split}_batch_idxs'):
+            with open(f'{self.data_root}/{self.dataset_name}/{gpt}/question/{split}_question_{idx}.json') as f:
+                outputs = json.load(f)
+
+            for output in outputs:
+                inputs.append(output)
+
+        return inputs
+
+
     def _post_process(self, datasets):
         raise NotImplementedError
 

@@ -22,7 +22,7 @@ from transformers import T5ForConditionalGeneration
 from transformers import DataCollatorForSeq2Seq
 from transformers.trainer_utils import set_seed
 
-from model_utils import TaskPrefixDataCollator, TaskPrefixTrainer
+from model_utils import TaskPrefixDataCollator, TaskPrefixTrainer, GPTDistillTrainer
 
 
 def get_config_dir(args):
@@ -77,13 +77,14 @@ def train_and_evaluate(args, run, tokenizer, tokenized_datasets, compute_metrics
 
     if args.model_type == 'task_prefix':
         data_collator = TaskPrefixDataCollator(tokenizer=tokenizer, model=model)
-    elif args.model_type == 'standard':
+    elif args.model_type in ['standard', 'gpt_input']:
         data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
     else:
         raise ValueError
 
 
     trainer_kwargs = {
+        'gpt_rate': args.gpt_rate,
         'alpha': args.alpha,
         'output_rationale': args.output_rationale,
         'model': model,
@@ -97,13 +98,14 @@ def train_and_evaluate(args, run, tokenizer, tokenized_datasets, compute_metrics
     
 
     if args.model_type == 'task_prefix':
+        trainer_kwargs.pop('gpt_rate')
         trainer = TaskPrefixTrainer(**trainer_kwargs)
-    elif args.model_type == 'standard':
+    elif args.model_type in ['standard', 'gpt_input']:
         trainer_kwargs.pop('alpha')
         trainer_kwargs.pop('output_rationale')
+        trainer_kwargs.pop('gpt_rate')
         trainer = Seq2SeqTrainer(**trainer_kwargs)
     else:
         raise ValueError
     
-
     trainer.train()

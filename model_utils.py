@@ -47,6 +47,8 @@ class TaskPrefixTrainer(Seq2SeqTrainer):
 
 
     def compute_loss(self, model, inputs, return_outputs=False):
+        # import pdb
+        # pdb.set_trace()
         pred_outputs = model(**inputs['pred'])
         expl_outputs = model(**inputs['expl'])
 
@@ -76,3 +78,25 @@ class TaskPrefixTrainer(Seq2SeqTrainer):
             [pred_outputs[1], expl_outputs[1]],
             [pred_outputs[2], expl_outputs[2]],
         )
+
+
+class GPTDistillTrainer(Seq2SeqTrainer):
+    def __init__(self, gpt_rate, **kwargs):
+        super().__init__(**kwargs)
+        self.gpt_rate = gpt_rate
+
+
+    def compute_loss(self, model, inputs, return_outputs=False):
+        import pdb
+        pdb.set_trace()
+        if self.gpt_rate == 0:
+            super().compute_loss(model, inputs, return_outputs=False)
+
+
+        pred_outputs = model(**inputs['pred'])
+        expl_outputs = model(**inputs['expl'])
+
+        loss = self.alpha * pred_outputs.loss + (1. - self.alpha) * expl_outputs.loss
+
+        return (loss, {'pred': pred_outputs, 'expl': expl_outputs}) if return_outputs else loss
+

@@ -16,7 +16,7 @@
 import argparse
 
 from datasets import DatasetDict, concatenate_datasets
-from transformers import AutoTokenizer
+from transformers import AutoTokenizer, set_seed
 
 from data_utils import CQADatasetLoader, SVAMPDatasetLoader, ESNLIDatasetLoader, ANLI1DatasetLoader, ASDivDatasetLoader
 from metrics import compute_text_acc, compute_equation_acc, compute_metrics_text, compute_metrics_equation, compute_metrics_text_aux, compute_metrics_equation_aux
@@ -24,8 +24,7 @@ from train_utils import train_and_evaluate
 
 
 def run(args):
-    # import pdb
-    # pdb.set_trace()
+    set_seed(args.seed)
     #### Prepare datasets
     if args.dataset == 'cqa':
         dataset_loader = CQADatasetLoader()
@@ -72,6 +71,11 @@ def run(args):
     else:
         raise ValueError
 
+    if args.gpt is not None:
+        train_gpt_input = dataset_loader.load_gpt_inputs(split='train', gpt=args.gpt)
+        datasets['train'] = datasets['train'].add_column('gpt_input', train_gpt_input)
+        datasets['test'] = datasets['test'].add_column('gpt_input', datasets['test']['input'])
+
     if args.llm is not None:
         datasets['train'] = datasets['train'].add_column('llm_label', train_llm_labels)
         datasets['test'] = datasets['test'].add_column('llm_label', test_llm_labels)
@@ -91,8 +95,12 @@ def run(args):
         else:
             raise ValueError
 
+        if args.gpt is not None:
+            valid_gpt_input = dataset_loader.load_gpt_inputs(split='valid', gpt=args.gpt)
+
         datasets['valid'] = datasets['valid'].add_column('llm_label', valid_llm_labels)
         datasets['valid'] = datasets['valid'].add_column('llm_rationale', valid_llm_rationales)
+        datasets['valid'] = datasets['valid'].add_column('gpt_input', valid_gpt_input)
     else:
         train_valid_datasets = datasets['train'].train_test_split(test_size=0.1, seed=0)
 
@@ -168,11 +176,39 @@ def run(args):
 
             return model_inputs
 
+    elif args.model_type == 'gpt_input':
+        def tokenize_function(examples):
+            model_inputs = tokenizer(
+                examples['input'],
+                max_length=args.max_input_length,
+                truncation=True
+            )
+
+            if examples['input'] != examples['gpt_input']:
+                for i in range(args.gpt_rate):
+                    gpt_model_input = tokenizer([texts[i] for texts in examples['gpt_input']], max_length=args.max_input_length, truncation=True)
+                    model_inputs['input_ids'].extend(gpt_model_input['input_ids'])
+                    model_inputs['attention_mask'].extend(gpt_model_input['attention_mask'])
+
+            with tokenizer.as_target_tokenizer():
+                label_output_encodings = tokenizer(examples['label'], max_length=256, truncation=True)
+
+            model_inputs['labels'] = label_output_encodings['input_ids']
+            if examples['input'] != examples['gpt_input']:
+                model_inputs['labels'] = label_output_encodings['input_ids'] * (1 + args.gpt_rate)
+
+            return model_inputs
+
     else:
         raise ValueError
 
-
-    if args.llm is None:
+    if args.model_type == 'gpt_input':
+        tokenized_datasets = datasets.map(
+            tokenize_function,
+            remove_columns=['input', 'label', 'gpt_input'],
+            batched=True
+        )
+    elif args.llm is None:
         tokenized_datasets = datasets.map(
             tokenize_function,
             remove_columns=['input', 'label'],
@@ -186,7 +222,7 @@ def run(args):
         )
 
 
-    if args.model_type == 'standard':
+    if args.model_type in ['standard', 'gpt_input']:
         if args.dataset not in ['svamp', 'asdiv']:
             compute_metrics = compute_metrics_text_aux(tokenizer)
         else:
@@ -225,6 +261,9 @@ if __name__ == '__main__':
     parser.add_argument('--bf16', action='store_true')
     parser.add_argument('--no_log', action='store_true')
     parser.add_argument('--output_rationale', action='store_true')
+    parser.add_argument('--gpt', type=str, default=None)
+    parser.add_argument('--gpt_rate', type=int, default=0)
+    parser.add_argument('--seed', type=int, default=608)
 
     args = parser.parse_args()
 
