@@ -22,7 +22,7 @@ from transformers import T5ForConditionalGeneration
 from transformers import DataCollatorForSeq2Seq
 from transformers.trainer_utils import set_seed
 
-from model_utils import TaskPrefixDataCollator, TaskPrefixTrainer, GPTDistillTrainer
+from model_utils import TaskPrefixDataCollator, TaskPrefixTrainer, RationaleDataCollator, RationaleTrainer
 
 
 def get_config_dir(args):
@@ -79,6 +79,8 @@ def train_and_evaluate(args, run, tokenizer, tokenized_datasets, compute_metrics
         data_collator = TaskPrefixDataCollator(tokenizer=tokenizer, model=model)
     elif args.model_type in ['standard', 'gpt_input']:
         data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
+    elif args.model_type == 'gpt_rationale':
+        data_collator = RationaleDataCollator(tokenizer=tokenizer, model=model)
     else:
         raise ValueError
 
@@ -105,6 +107,9 @@ def train_and_evaluate(args, run, tokenizer, tokenized_datasets, compute_metrics
         trainer_kwargs.pop('output_rationale')
         trainer_kwargs.pop('gpt_rate')
         trainer = Seq2SeqTrainer(**trainer_kwargs)
+    elif args.model_type == 'gpt_rationale':
+        trainer_kwargs.pop('gpt_rate')
+        trainer = RationaleTrainer(**trainer_kwargs)
     else:
         raise ValueError
     

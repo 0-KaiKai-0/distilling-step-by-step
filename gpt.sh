@@ -1,6 +1,6 @@
 MODEL=gpt-3.5-turbo
 DATASET=cqa
-TASK=question
+TASK=rationale
 KEY=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
 OUTPUT_DIR=datasets/$DATASET/$MODEL/$TASK
 

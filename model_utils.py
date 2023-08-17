@@ -80,23 +80,61 @@ class TaskPrefixTrainer(Seq2SeqTrainer):
         )
 
 
-class GPTDistillTrainer(Seq2SeqTrainer):
-    def __init__(self, gpt_rate, **kwargs):
+class RationaleDataCollator(DataCollatorForSeq2Seq):
+    def __call__(self, features, return_tensors=None):
+        features_df = pd.DataFrame(features)
+        expl_features = features_df.loc[:, ~features_df.columns.isin(['labels'])].rename(
+            columns={'rationales': 'labels'}
+        ).to_dict('records')
+        if 'rationales' not in features[0]:
+            features_df['rationales'] = features_df['input_ids']
+        pred_features = features_df.loc[:, ~features_df.columns.isin(['input_ids', 'attention_mask'])].rename(
+            columns={'rationales': 'input_ids'}).to_dict('records')
+
+        pred_features = super().__call__(pred_features, return_tensors)
+        expl_features = super().__call__(expl_features, return_tensors)
+
+        return {
+            'expl': expl_features,
+            'pred': pred_features,
+        }
+
+
+class RationaleTrainer(Seq2SeqTrainer):
+    def __init__(self, alpha, output_rationale, **kwargs):
         super().__init__(**kwargs)
-        self.gpt_rate = gpt_rate
+        self.alpha = alpha
+        self.output_rationale = output_rationale
 
 
     def compute_loss(self, model, inputs, return_outputs=False):
-        import pdb
-        pdb.set_trace()
-        if self.gpt_rate == 0:
-            super().compute_loss(model, inputs, return_outputs=False)
-
-
-        pred_outputs = model(**inputs['pred'])
         expl_outputs = model(**inputs['expl'])
 
-        loss = self.alpha * pred_outputs.loss + (1. - self.alpha) * expl_outputs.loss
+        with torch.no_grad():
+            output_rationales = model.module.generate(inputs=inputs['expl']['input_ids'], attention_mask=inputs['expl']['attention_mask'], max_length=128)
+            inputs['pred']['attention_mask'] = None
+            inputs['pred']['input_ids'] = output_rationales
+
+        pred_outputs = model(**inputs['pred'])
+        
+        alpha = 0.6
+        loss = alpha * pred_outputs.loss + (1- alpha) * expl_outputs.loss
 
         return (loss, {'pred': pred_outputs, 'expl': expl_outputs}) if return_outputs else loss
 
+
+    def prediction_step(
+        self,
+        model: nn.Module,
+        inputs: Dict[str, Union[torch.Tensor, Any]],
+        prediction_loss_only: bool,
+        ignore_keys: Optional[List[str]] = None
+    ) -> Tuple[Optional[float], Optional[torch.Tensor], Optional[torch.Tensor]]:
+        
+        expl_outputs = super().prediction_step(model, inputs['expl'], prediction_loss_only=False, ignore_keys=ignore_keys)
+
+        inputs['pred']['attention_mask'] = None
+        inputs['pred']['input_ids'] = expl_outputs[1]
+        pred_outputs = super().prediction_step(model, inputs['pred'], prediction_loss_only=False, ignore_keys=ignore_keys)
+
+        return pred_outputs

@@ -123,6 +123,27 @@ class DatasetLoader(object):
         return inputs
 
 
+    def load_gpt_rationales(self, split, gpt):
+        labels = list()
+        rationales = list()
+        for idx in getattr(self, f'{split}_batch_idxs'):
+            with open(f'{self.data_root}/{self.dataset_name}/{gpt}/rationale/{split}_rationale_{idx}.json') as f:
+                outputs = json.load(f)
+
+            for output in outputs:
+                rationale = []
+                label = []
+                for o in output:
+                    r, l = self._parse_gpt_rationale(o)
+                    rationale.append(r)
+                    label.append(l)
+
+                rationales.append(rationale)
+                labels.append(label)
+
+        return rationales, labels
+
+
     def _post_process(self, datasets):
         raise NotImplementedError
 
@@ -132,6 +153,10 @@ class DatasetLoader(object):
 
 
     def _parse_gpt_output(self, output):
+        raise NotImplementedError
+
+
+    def _parse_gpt_rationale(self, output):
         raise NotImplementedError
 
 
@@ -205,6 +230,22 @@ class CQADatasetLoader(DatasetLoader):
         try:
             label = re.split(r'\(.\)', label)[1].strip()
             label = label if label[-1]!='.' else label[:-1]
+        except:
+            label = ' '
+        
+        return rationale, label
+
+        
+    def _parse_gpt_rationale(self, output):
+        rationale_label = output.rstrip().lstrip()
+        rationale_label = rationale_label.split('So the answer is')
+        rationale, label = rationale_label[0], rationale_label[1]
+        rationale = rationale.rstrip()
+
+        try:
+            label = re.split(r'\(.\)', label)[1].strip()
+            label = label if label[-1]!='.' else label[:-1]
+            label = label.strip()
         except:
             label = ' '
         

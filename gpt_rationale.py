@@ -17,7 +17,7 @@ def ask_GPT4(system_intel, prompt, n):
     result = openai.ChatCompletion.create(model="gpt-3.5-turbo",
                                         messages=[{"role": "system", "content": system_intel},
                                             {"role": "user", "content": prompt}],
-                                        temperature=0.5,
+                                        temperature=1,
                                         max_tokens=256,
                                         n=n)
     for idx in range(n):

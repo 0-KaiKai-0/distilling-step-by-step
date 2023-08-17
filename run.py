@@ -21,6 +21,7 @@ from transformers import AutoTokenizer, set_seed
 from data_utils import CQADatasetLoader, SVAMPDatasetLoader, ESNLIDatasetLoader, ANLI1DatasetLoader, ASDivDatasetLoader
 from metrics import compute_text_acc, compute_equation_acc, compute_metrics_text, compute_metrics_equation, compute_metrics_text_aux, compute_metrics_equation_aux
 from train_utils import train_and_evaluate
+from tqdm import *
 
 
 def run(args):
@@ -71,10 +72,16 @@ def run(args):
     else:
         raise ValueError
 
-    if args.gpt is not None:
+    if args.model_type == 'gpt_input':
         train_gpt_input = dataset_loader.load_gpt_inputs(split='train', gpt=args.gpt)
         datasets['train'] = datasets['train'].add_column('gpt_input', train_gpt_input)
         datasets['test'] = datasets['test'].add_column('gpt_input', datasets['test']['input'])
+    elif args.model_type == 'gpt_rationale':
+        train_llm_rationales, train_llm_labels = dataset_loader.load_gpt_rationales(split='train', gpt=args.gpt)
+        datasets['train'] = datasets['train'].add_column('llm_rationale', train_llm_rationales)
+        datasets['train'] = datasets['train'].add_column('llm_label', train_llm_labels)
+        datasets['test'] = datasets['test'].add_column('llm_rationale', datasets['test']['input'])
+        datasets['test'] = datasets['test'].add_column('llm_label', datasets['test']['label'])
 
     if args.llm is not None:
         datasets['train'] = datasets['train'].add_column('llm_label', train_llm_labels)
@@ -95,12 +102,15 @@ def run(args):
         else:
             raise ValueError
 
-        if args.gpt is not None:
+        if args.model_type == 'gpt_input':
             valid_gpt_input = dataset_loader.load_gpt_inputs(split='valid', gpt=args.gpt)
+            datasets['valid'] = datasets['valid'].add_column('gpt_input', valid_gpt_input)
+        else:
+            if args.model_type == 'gpt_rationale':
+                valid_llm_rationales, valid_llm_labels = dataset_loader.load_gpt_rationales(split='valid', gpt=args.gpt)
 
-        datasets['valid'] = datasets['valid'].add_column('llm_label', valid_llm_labels)
-        datasets['valid'] = datasets['valid'].add_column('llm_rationale', valid_llm_rationales)
-        datasets['valid'] = datasets['valid'].add_column('gpt_input', valid_gpt_input)
+            datasets['valid'] = datasets['valid'].add_column('llm_label', valid_llm_labels)
+            datasets['valid'] = datasets['valid'].add_column('llm_rationale', valid_llm_rationales)
     else:
         train_valid_datasets = datasets['train'].train_test_split(test_size=0.1, seed=0)
 
@@ -112,7 +122,7 @@ def run(args):
 
     if args.label_type == 'gt':
         pass
-    elif args.label_type == 'llm' and args.llm is not None:
+    elif (args.label_type == 'llm' and args.llm is not None) or (args.label_type == 'gpt'):
         if args.dataset not in ['svamp', 'asdiv']:
             train_label_acc = compute_text_acc(datasets['train']['llm_label'], datasets['train']['label'])
             test_label_acc = compute_text_acc(datasets['test']['llm_label'], datasets['test']['label'])
@@ -199,6 +209,29 @@ def run(args):
 
             return model_inputs
 
+    elif args.model_type == 'gpt_rationale':
+        def tokenize_function(examples):
+            model_inputs = tokenizer(['explain: ' + text for text in examples['input']], max_length=args.max_input_length, truncation=True)
+
+            with tokenizer.as_target_tokenizer():
+                label_output_encodings = tokenizer(examples['label'], max_length=256, truncation=True)
+
+            model_inputs['labels'] = label_output_encodings['input_ids']
+
+            if examples['input'] != examples['llm_rationale']:
+                with tokenizer.as_target_tokenizer():
+                    for i in range(args.gpt_rate):
+                        gpt_model_input = tokenizer(['predict: ' + texts[i] for texts in examples['llm_rationale']], max_length=256, truncation=True)
+                        if i == 0:
+                            model_inputs['rationales'] = gpt_model_input['input_ids']
+                        else:
+                            model_inputs['input_ids'].extend(model_inputs['input_ids'][:len(examples['input'])])
+                            model_inputs['attention_mask'].extend(model_inputs['attention_mask'][:len(examples['input'])])
+                            model_inputs['labels'].extend(model_inputs['labels'][:len(examples['input'])])
+                            model_inputs['rationales'].extend(gpt_model_input['input_ids'])
+
+            return model_inputs
+
     else:
         raise ValueError
 
@@ -208,10 +241,16 @@ def run(args):
             remove_columns=['input', 'label', 'gpt_input'],
             batched=True
         )
+    elif args.model_type == 'gpt_rationale':
+        tokenized_datasets = datasets.map(
+            tokenize_function,
+            remove_columns=['input', 'label', 'llm_label', 'llm_rationale'],
+            batched=True
+        )
     elif args.llm is None:
         tokenized_datasets = datasets.map(
             tokenize_function,
-            remove_columns=['input', 'label'],
+            remove_columns=['input', 'label', 'llm_label', 'llm_rationale'],
             batched=True
         )
     else:
@@ -220,9 +259,19 @@ def run(args):
             remove_columns=['input', 'rationale', 'label', 'llm_label'],
             batched=True
         )
+    
+    # cnt = 100
+    # input_len = 0
+    # rationale_len = 0
+    # for i in tqdm(range(cnt)):
+    #     input_len += len(tokenized_datasets['train']['input_ids'][i])
+    #     rationale_len += len(tokenized_datasets['train']['aux_labels'][i])
+    # print(input_len / cnt)
+    # print(rationale_len / cnt)
 
-
-    if args.model_type in ['standard', 'gpt_input']:
+    # import pdb
+    # pdb.set_trace()
+    if args.model_type in ['standard', 'gpt_input', 'gpt_rationale']:
         if args.dataset not in ['svamp', 'asdiv']:
             compute_metrics = compute_metrics_text_aux(tokenizer)
         else:
