@@ -83,13 +83,21 @@ class TaskPrefixTrainer(Seq2SeqTrainer):
 class RationaleDataCollator(DataCollatorForSeq2Seq):
     def __call__(self, features, return_tensors=None):
         features_df = pd.DataFrame(features)
-        expl_features = features_df.loc[:, ~features_df.columns.isin(['labels'])].rename(
+        # expl_features = features_df.loc[:, ~features_df.columns.isin(['labels'])].rename(
+        #     columns={'rationales': 'labels'}
+        # ).to_dict('records')
+        # if 'rationales' not in features[0]:
+        #     features_df['rationales'] = features_df['input_ids']
+        # pred_features = features_df.loc[:, ~features_df.columns.isin(['input_ids', 'attention_mask'])].rename(
+        #     columns={'rationales': 'input_ids'}).to_dict('records')
+
+        expl_features = features_df.loc[:, ~features_df.columns.isin(['labels', 'pred_input_ids'])].rename(
             columns={'rationales': 'labels'}
         ).to_dict('records')
         if 'rationales' not in features[0]:
             features_df['rationales'] = features_df['input_ids']
-        pred_features = features_df.loc[:, ~features_df.columns.isin(['input_ids', 'attention_mask'])].rename(
-            columns={'rationales': 'input_ids'}).to_dict('records')
+        pred_features = features_df.loc[:, ~features_df.columns.isin(['input_ids', 'attention_mask', 'rationales'])].rename(
+            columns={'pred_input_ids': 'input_ids'}).to_dict('records')
 
         pred_features = super().__call__(pred_features, return_tensors)
         expl_features = super().__call__(expl_features, return_tensors)
@@ -108,17 +116,25 @@ class RationaleTrainer(Seq2SeqTrainer):
 
 
     def compute_loss(self, model, inputs, return_outputs=False):
-        expl_outputs = model(**inputs['expl'])
+        expl_outputs = model(**inputs['expl'], sample_loss=True)
 
         with torch.no_grad():
             output_rationales = model.module.generate(inputs=inputs['expl']['input_ids'], attention_mask=inputs['expl']['attention_mask'], max_length=128)
             inputs['pred']['attention_mask'] = None
-            inputs['pred']['input_ids'] = output_rationales
+            # inputs['pred']['input_ids'] = output_rationales
+            inputs['pred']['input_ids'] = torch.cat((inputs['pred']['input_ids'], output_rationales), dim=1)
 
-        pred_outputs = model(**inputs['pred'])
-        
-        alpha = 0.6
-        loss = alpha * pred_outputs.loss + (1- alpha) * expl_outputs.loss
+        # from transformers import AutoTokenizer
+        # tokenizer = AutoTokenizer.from_pretrained('/root/workspace/distilling-step-by-step/ckpts/cqa/t5-v1_1-base/standard/None/1.0/gt/0.5/1024/32/AdamW/5e-05/0/checkpoint-10000')
+
+        pred_outputs = model(**inputs['pred'], sample_loss=True)
+        entropy = pred_outputs.loss
+        alpha = torch.tanh(entropy / 10).detach()
+        alpha = alpha.clamp(0., 0.7)
+        loss = alpha * pred_outputs.loss + (1 - alpha) * expl_outputs.loss
+        # import pdb
+        # pdb.set_trace()
+        loss = loss.mean()
 
         return (loss, {'pred': pred_outputs, 'expl': expl_outputs}) if return_outputs else loss
 
@@ -134,7 +150,8 @@ class RationaleTrainer(Seq2SeqTrainer):
         expl_outputs = super().prediction_step(model, inputs['expl'], prediction_loss_only=False, ignore_keys=ignore_keys)
 
         inputs['pred']['attention_mask'] = None
-        inputs['pred']['input_ids'] = expl_outputs[1]
+        # inputs['pred']['input_ids'] = expl_outputs[1]
+        inputs['pred']['input_ids'] = torch.cat((inputs['pred']['input_ids'], expl_outputs[1].to(inputs['pred']['input_ids'].device)), dim=1)
         pred_outputs = super().prediction_step(model, inputs['pred'], prediction_loss_only=False, ignore_keys=ignore_keys)
 
         return pred_outputs

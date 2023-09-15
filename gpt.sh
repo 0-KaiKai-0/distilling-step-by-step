@@ -1,8 +1,8 @@
 MODEL=gpt-3.5-turbo
 DATASET=cqa
 TASK=rationale
-KEY=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
-OUTPUT_DIR=datasets/$DATASET/$MODEL/$TASK
+KEY=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
+OUTPUT_DIR=datasets/$DATASET/$MODEL/$TASK-pdb
 
 mkdir -p $OUTPUT_DIR
 
@@ -11,4 +11,4 @@ python -u gpt.py \
 --dataset $DATASET \
 --task $TASK \
 --key $KEY \
-| tee -a $OUTPUT_DIR/generate.log
+| tee -a $OUTPUT_DIR/pdb.log

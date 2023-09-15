@@ -1,4 +1,4 @@
-RUN_NAME=gpt_rationale_alpha0.6_max_length128
+RUN_NAME=gpt_rationale_clamp0.7_tanh10
 DATASET=cqa
 GPT=gpt-3.5-turbo
 OUTPUT_DIR=outputs/$DATASET/$GPT/$RUN_NAME
@@ -13,4 +13,4 @@ python -u run.py \
     --batch_size 8 \
     --gpt $GPT \
     --gpt_rate 1 \
-| tee -a $OUTPUT_DIR/train1.log
+| tee -a $OUTPUT_DIR/train.log

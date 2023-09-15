@@ -10,5 +10,5 @@ python -u run.py \
     --model_type standard \
     --label_type llm \
     --llm palm \
-    --batch_size 64 \
+    --batch_size 8 \
 | tee -a $OUTPUT_DIR/train.log

@@ -54,10 +54,8 @@ def get_questions(system_intel, prompt, n):
             print(question)
 
 
-@retry(wait=wait_random_exponential(min=1, max=10))
+# @retry(wait=wait_random_exponential(min=1, max=10))
 def get_rationales(system_intel, prompt, n):
-    # import pdb
-    # pdb.set_trace()
     rationales = []
     
     while len(rationales) < n:
@@ -71,6 +69,8 @@ def get_rationales(system_intel, prompt, n):
             rationale = result['choices'][idx]['message']['content']
             if 'So the answer is' in rationale:
                 rationales.append(rationale)
+        import pdb
+        pdb.set_trace()
 
     rationales = rationales[:n]
         

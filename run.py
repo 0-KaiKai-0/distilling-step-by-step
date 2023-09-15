@@ -16,7 +16,7 @@
 import argparse
 
 from datasets import DatasetDict, concatenate_datasets
-from transformers import AutoTokenizer, set_seed
+from transformers import AutoTokenizer
 
 from data_utils import CQADatasetLoader, SVAMPDatasetLoader, ESNLIDatasetLoader, ANLI1DatasetLoader, ASDivDatasetLoader
 from metrics import compute_text_acc, compute_equation_acc, compute_metrics_text, compute_metrics_equation, compute_metrics_text_aux, compute_metrics_equation_aux
@@ -25,7 +25,6 @@ from tqdm import *
 
 
 def run(args):
-    set_seed(args.seed)
     #### Prepare datasets
     if args.dataset == 'cqa':
         dataset_loader = CQADatasetLoader()
@@ -112,7 +111,7 @@ def run(args):
             datasets['valid'] = datasets['valid'].add_column('llm_label', valid_llm_labels)
             datasets['valid'] = datasets['valid'].add_column('llm_rationale', valid_llm_rationales)
     else:
-        train_valid_datasets = datasets['train'].train_test_split(test_size=0.1, seed=0)
+        train_valid_datasets = datasets['train'].train_test_split(test_size=0.1, seed=args.run)
 
         datasets = DatasetDict({
             'train': train_valid_datasets['train'],
@@ -211,7 +210,11 @@ def run(args):
 
     elif args.model_type == 'gpt_rationale':
         def tokenize_function(examples):
+            # 'explain': [3209]; 'predict': [9689]
             model_inputs = tokenizer(['explain: ' + text for text in examples['input']], max_length=args.max_input_length, truncation=True)
+
+            pred_model_inputs = tokenizer(['predict: ' + text for text in examples['input']], max_length=args.max_input_length, truncation=True)
+            model_inputs['pred_input_ids'] = pred_model_inputs['input_ids']
 
             with tokenizer.as_target_tokenizer():
                 label_output_encodings = tokenizer(examples['label'], max_length=256, truncation=True)
@@ -221,12 +224,14 @@ def run(args):
             if examples['input'] != examples['llm_rationale']:
                 with tokenizer.as_target_tokenizer():
                     for i in range(args.gpt_rate):
-                        gpt_model_input = tokenizer(['predict: ' + texts[i] for texts in examples['llm_rationale']], max_length=256, truncation=True)
+                        # gpt_model_input = tokenizer(['predict: ' + texts[i] for texts in examples['llm_rationale']], max_length=256, truncation=True)
+                        gpt_model_input = tokenizer([texts[i] for texts in examples['llm_rationale']], max_length=256, truncation=True)
                         if i == 0:
                             model_inputs['rationales'] = gpt_model_input['input_ids']
                         else:
                             model_inputs['input_ids'].extend(model_inputs['input_ids'][:len(examples['input'])])
                             model_inputs['attention_mask'].extend(model_inputs['attention_mask'][:len(examples['input'])])
+                            model_inputs['pred_input_ids'].extend(model_inputs['pred_input_ids'][:len(examples['input'])])
                             model_inputs['labels'].extend(model_inputs['labels'][:len(examples['input'])])
                             model_inputs['rationales'].extend(gpt_model_input['input_ids'])
 
@@ -250,7 +255,7 @@ def run(args):
     elif args.llm is None:
         tokenized_datasets = datasets.map(
             tokenize_function,
-            remove_columns=['input', 'label', 'llm_label', 'llm_rationale'],
+            remove_columns=['input', 'label'],
             batched=True
         )
     else:
@@ -312,7 +317,6 @@ if __name__ == '__main__':
     parser.add_argument('--output_rationale', action='store_true')
     parser.add_argument('--gpt', type=str, default=None)
     parser.add_argument('--gpt_rate', type=int, default=0)
-    parser.add_argument('--seed', type=int, default=608)
 
     args = parser.parse_args()
 

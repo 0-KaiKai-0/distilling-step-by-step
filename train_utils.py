@@ -18,7 +18,7 @@ import shutil
 import logging
 
 from transformers import Seq2SeqTrainingArguments, Seq2SeqTrainer
-from transformers import T5ForConditionalGeneration
+from model import T5ForRationale
 from transformers import DataCollatorForSeq2Seq
 from transformers.trainer_utils import set_seed
 
@@ -32,7 +32,7 @@ def get_config_dir(args):
 def train_and_evaluate(args, run, tokenizer, tokenized_datasets, compute_metrics):
     set_seed(run)
 
-    model = T5ForConditionalGeneration.from_pretrained(args.from_pretrained)
+    model = T5ForRationale.from_pretrained(args.from_pretrained)
 
     if args.parallelize:
         model.parallelize()
@@ -57,8 +57,8 @@ def train_and_evaluate(args, run, tokenizer, tokenized_datasets, compute_metrics
         remove_unused_columns = False,
         evaluation_strategy = 'steps',
         eval_steps=args.eval_steps,
-        save_strategy='no',
-        save_steps=args.eval_steps,
+        save_strategy='steps',
+        save_steps=1000,
         logging_dir=logging_dir,
         logging_strategy=logging_strategy,
         logging_steps=args.eval_steps,
@@ -98,6 +98,8 @@ def train_and_evaluate(args, run, tokenizer, tokenized_datasets, compute_metrics
         'compute_metrics': compute_metrics,
     }
     
+    # import pdb
+    # pdb.set_trace()
 
     if args.model_type == 'task_prefix':
         trainer_kwargs.pop('gpt_rate')

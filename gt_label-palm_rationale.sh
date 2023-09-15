@@ -1,4 +1,4 @@
-RUN_NAME=gt_label-palm_rationale-pdb
+RUN_NAME=gt_label-palm_rationale
 DATASET=cqa
 OUTPUT_DIR=outputs/$DATASET/$RUN_NAME
 
