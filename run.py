@@ -225,7 +225,7 @@ def run(args):
                 with tokenizer.as_target_tokenizer():
                     for i in range(args.gpt_rate):
                         # gpt_model_input = tokenizer(['predict: ' + texts[i] for texts in examples['llm_rationale']], max_length=256, truncation=True)
-                        gpt_model_input = tokenizer([texts[i] for texts in examples['llm_rationale']], max_length=256, truncation=True)
+                        gpt_model_input = tokenizer([texts[i] for texts in examples['llm_rationale']], max_length=96, truncation=True)
                         if i == 0:
                             model_inputs['rationales'] = gpt_model_input['input_ids']
                         else:
@@ -317,6 +317,8 @@ if __name__ == '__main__':
     parser.add_argument('--output_rationale', action='store_true')
     parser.add_argument('--gpt', type=str, default=None)
     parser.add_argument('--gpt_rate', type=int, default=0)
+    parser.add_argument('--output_dir', type=str, default=None)
+    parser.add_argument('--sample_loss', type=bool, default=False)
 
     args = parser.parse_args()
 

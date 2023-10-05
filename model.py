@@ -48,7 +48,6 @@ from transformers.utils import (
 )
 from transformers.utils.model_parallel_utils import assert_device_map, get_device_map
 from transformers.models.t5.configuration_t5 import T5Config
-from loss import SampleCrossEntropyLoss
 
 
 logger = logging.get_logger(__name__)
@@ -1775,17 +1774,23 @@ class T5ForRationale(T5PreTrainedModel):
 
         lm_logits = self.lm_head(sequence_output)
 
+        # import pdb
+        # pdb.set_trace()
         loss = None
         if labels is not None:
             if sample_loss:
-                loss_fct = SampleCrossEntropyLoss(ignore_index=-100)
+                loss_fct = CrossEntropyLoss(ignore_index=-100, reduction="none")
                 # loss_fct1 = CrossEntropyLoss(ignore_index=-100)
                 # move labels to correct device to enable PP
                 labels = labels.to(lm_logits.device)
+                loss = loss_fct(lm_logits.view(-1, lm_logits.size(-1)), labels.view(-1)).view(labels.shape)
+
+                padding_mask = labels.eq(-100)
+                # Take the mean over the label dimensions, then divide by the number of active elements (i.e. not-padded):
+                num_active_elements = padding_mask.shape[1] - padding_mask.long().sum(1)
                 # import pdb
                 # pdb.set_trace()
-                # loss1 = loss_fct1(lm_logits.view(-1, lm_logits.size(-1)), labels.view(-1))
-                loss = loss_fct(lm_logits, labels)
+                loss = loss.sum(1) / num_active_elements
             else:
                 loss_fct = CrossEntropyLoss(ignore_index=-100)
                 # move labels to correct device to enable PP

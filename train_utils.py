@@ -37,9 +37,13 @@ def train_and_evaluate(args, run, tokenizer, tokenized_datasets, compute_metrics
     if args.parallelize:
         model.parallelize()
     
-    config_dir = get_config_dir(args)
-    output_dir = f'ckpts/{config_dir}/{run}'  # for model ckpts
-    logging_dir = f'logs/{config_dir}/{run}'  # for training logs
+    if args.output_dir is not None:
+        output_dir = args.output_dir + '/ckpts'
+        logging_dir = args.output_dir
+    else:
+        config_dir = get_config_dir(args)
+        output_dir = f'ckpts/{config_dir}/{run}'  # for model ckpts
+        logging_dir = f'logs/{config_dir}/{run}'  # for training logs
 
     if args.no_log:
         logging_strategy = 'no'
@@ -96,6 +100,8 @@ def train_and_evaluate(args, run, tokenizer, tokenized_datasets, compute_metrics
         'data_collator': data_collator,
         'tokenizer': tokenizer,
         'compute_metrics': compute_metrics,
+        'sample_loss': args.sample_loss,
+        'batch_size': args.batch_size,
     }
     
     # import pdb
@@ -103,11 +109,15 @@ def train_and_evaluate(args, run, tokenizer, tokenized_datasets, compute_metrics
 
     if args.model_type == 'task_prefix':
         trainer_kwargs.pop('gpt_rate')
+        trainer_kwargs.pop('sample_loss')
+        trainer_kwargs.pop('batch_size')
         trainer = TaskPrefixTrainer(**trainer_kwargs)
     elif args.model_type in ['standard', 'gpt_input']:
         trainer_kwargs.pop('alpha')
         trainer_kwargs.pop('output_rationale')
         trainer_kwargs.pop('gpt_rate')
+        trainer_kwargs.pop('sample_loss')
+        trainer_kwargs.pop('batch_size')
         trainer = Seq2SeqTrainer(**trainer_kwargs)
     elif args.model_type == 'gpt_rationale':
         trainer_kwargs.pop('gpt_rate')

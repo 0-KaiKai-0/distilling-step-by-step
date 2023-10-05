@@ -109,17 +109,19 @@ class RationaleDataCollator(DataCollatorForSeq2Seq):
 
 
 class RationaleTrainer(Seq2SeqTrainer):
-    def __init__(self, alpha, output_rationale, **kwargs):
+    def __init__(self, output_rationale, alpha=1, sample_loss=False, batch_size=8, **kwargs):
         super().__init__(**kwargs)
         self.alpha = alpha
         self.output_rationale = output_rationale
+        self.sample_loss = sample_loss
+        self.batch_size = batch_size
 
 
     def compute_loss(self, model, inputs, return_outputs=False):
-        expl_outputs = model(**inputs['expl'], sample_loss=True)
+        expl_outputs = model(**inputs['expl'], sample_loss=self.sample_loss)
 
         with torch.no_grad():
-            output_rationales = model.module.generate(inputs=inputs['expl']['input_ids'], attention_mask=inputs['expl']['attention_mask'], max_length=128)
+            output_rationales = model.module.generate(inputs=inputs['expl']['input_ids'], attention_mask=inputs['expl']['attention_mask'], max_length=96)
             inputs['pred']['attention_mask'] = None
             # inputs['pred']['input_ids'] = output_rationales
             inputs['pred']['input_ids'] = torch.cat((inputs['pred']['input_ids'], output_rationales), dim=1)
@@ -127,14 +129,17 @@ class RationaleTrainer(Seq2SeqTrainer):
         # from transformers import AutoTokenizer
         # tokenizer = AutoTokenizer.from_pretrained('/root/workspace/distilling-step-by-step/ckpts/cqa/t5-v1_1-base/standard/None/1.0/gt/0.5/1024/32/AdamW/5e-05/0/checkpoint-10000')
 
-        pred_outputs = model(**inputs['pred'], sample_loss=True)
-        entropy = pred_outputs.loss
-        alpha = torch.tanh(entropy / 10).detach()
-        alpha = alpha.clamp(0., 0.7)
-        loss = alpha * pred_outputs.loss + (1 - alpha) * expl_outputs.loss
         # import pdb
         # pdb.set_trace()
-        loss = loss.mean()
+        pred_outputs = model(**inputs['pred'], sample_loss=self.sample_loss)
+        if self.sample_loss:
+            entropy = pred_outputs.loss
+            alpha = torch.tanh(entropy / 10).detach()
+            alpha = alpha.clamp(min=0.2, max=0.7)
+            loss = alpha * pred_outputs.loss + (1 - alpha) * expl_outputs.loss
+            loss = loss.view(-1, self.batch_size).mean(-1)
+        else:
+            loss = self.alpha * pred_outputs.loss + (1 - self.alpha) * expl_outputs.loss
 
         return (loss, {'pred': pred_outputs, 'expl': expl_outputs}) if return_outputs else loss
 
