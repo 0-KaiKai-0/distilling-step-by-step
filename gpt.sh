@@ -1,7 +1,7 @@
 MODEL=gpt-3.5-turbo
 DATASET=cqa
 TASK=rationale
-KEY=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
+KEY=
 OUTPUT_DIR=datasets/$DATASET/$MODEL/$TASK
 
 mkdir -p $OUTPUT_DIR
